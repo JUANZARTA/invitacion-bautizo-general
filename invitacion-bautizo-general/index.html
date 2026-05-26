@@ -1,0 +1,564 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bautizo · Mateo Rodríguez</title>
+
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Bautizo · Mateo Rodríguez — 18 Jul 2026" />
+  <meta property="og:description" content="El bautizo de Mateo es un momento muy especial. Queremos celebrarlo contigo." />
+  <meta property="og:image"       content="img/fotos/img (2).png" />
+  <meta name="theme-color"        content="#5DADE2" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="preload" as="image" href="img/fotos/img (2).png" fetchpriority="high" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='44' fill='none' stroke='%235DADE2' stroke-width='5'/%3E%3Ccircle cx='50' cy='38' r='18' fill='%235DADE2' opacity='.35'/%3E%3Cpath d='M28 72 Q50 52 72 72' fill='%235DADE2' opacity='.5'/%3E%3C/svg%3E" />
+</head>
+<body>
+
+  <canvas id="bubbles-canvas" aria-hidden="true"></canvas>
+
+  <!-- ══ NAVBAR ══ -->
+  <nav id="navbar" role="navigation" aria-label="Menú principal">
+    <div class="nav-logo">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2C8.69 2 6 4.69 6 8c0 5.25 6 13 6 13s6-7.75 6-13c0-3.31-2.69-6-6-6zm0 8.5A2.5 2.5 0 1 1 12 5.5a2.5 2.5 0 0 1 0 5z" fill="#5DADE2"/></svg>
+      <span data-b="name">Mateo Rodríguez</span>
+    </div>
+    <div class="nav-links" role="list">
+      <a href="#familia">Familia</a>
+      <a href="#galeria">Galería</a>
+      <a href="#itinerario">Itinerario</a>
+      <a href="#rsvp">Confirmar</a>
+    </div>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav-drawer" id="nav-drawer" role="dialog">
+    <a href="#familia">Familia</a>
+    <a href="#galeria">Galería</a>
+    <a href="#itinerario">Itinerario</a>
+    <a href="#rsvp">Confirmar</a>
+  </div>
+
+  <!-- ══ HERO ══ -->
+  <section id="hero" aria-label="Portada">
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <!-- Decoración nube superior -->
+      <div class="hero-cloud" aria-hidden="true">
+        <svg width="120" height="40" viewBox="0 0 120 40" fill="none"><ellipse cx="60" cy="28" rx="55" ry="18" fill="rgba(255,255,255,0.18)"/><ellipse cx="35" cy="22" rx="25" ry="16" fill="rgba(255,255,255,0.15)"/><ellipse cx="85" cy="20" rx="28" ry="15" fill="rgba(255,255,255,0.12)"/></svg>
+      </div>
+
+      <p class="hero-pre">Con amor y gratitud</p>
+
+      <h1 class="hero-name" data-b="name">Mateo Rodríguez</h1>
+
+      <div class="hero-star-row" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" fill="rgba(255,255,255,0.7)"/></svg>
+        <span class="hero-subtitle">Bautizo</span>
+        <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" fill="rgba(255,255,255,0.7)"/></svg>
+      </div>
+
+      <p class="hero-date">Domingo · 6 de Diciembre · 2026</p>
+
+      <div class="gender-toggle" role="group" aria-label="Estilo de invitación">
+        <button class="gender-btn gender-btn--active" data-gender="nino" aria-pressed="true">
+          <span aria-hidden="true">👦</span> Niño
+        </button>
+        <button class="gender-btn" data-gender="nina" aria-pressed="false">
+          <span aria-hidden="true">👧</span> Niña
+        </button>
+      </div>
+
+      <a href="#familia" class="hero-cta">Descubrir</a>
+    </div>
+
+    <div class="countdown-wrapper" aria-label="Cuenta regresiva">
+      <div class="cd-item">
+        <span class="cd-num" id="cd-days">00</span>
+        <span class="cd-label">Días</span>
+      </div>
+      <div class="cd-sep" aria-hidden="true"></div>
+      <div class="cd-item">
+        <span class="cd-num" id="cd-hours">00</span>
+        <span class="cd-label">Horas</span>
+      </div>
+      <div class="cd-sep" aria-hidden="true"></div>
+      <div class="cd-item">
+        <span class="cd-num" id="cd-minutes">00</span>
+        <span class="cd-label">Minutos</span>
+      </div>
+      <div class="cd-sep" aria-hidden="true"></div>
+      <div class="cd-item">
+        <span class="cd-num" id="cd-seconds">00</span>
+        <span class="cd-label">Segundos</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ WAVE SEPARATOR ══ -->
+  <div class="wave-sep wave-sep--down" aria-hidden="true">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#EBF5FB"/></svg>
+  </div>
+
+  <!-- ══ CITA / PAPÁS ══ -->
+  <section class="section section-pale" aria-label="Mensaje de los papás">
+    <div class="quote-block reveal">
+      <div class="quote-deco" aria-hidden="true">
+        <svg width="48" height="36" viewBox="0 0 48 36" fill="none"><path d="M0 36 L0 18 Q0 0 18 0 L18 8 Q8 8 8 18 L8 36 Z" fill="#AED6F1" opacity=".6"/><path d="M26 36 L26 18 Q26 0 44 0 L44 8 Q34 8 34 18 L34 36 Z" fill="#AED6F1" opacity=".6"/></svg>
+      </div>
+      <p class="quote-text">Con el corazón lleno de gratitud y amor, queremos compartir con ustedes este momento sagrado en la vida de nuestro hijo Mateo. Su presencia hará de este día un recuerdo eterno.</p>
+      <p class="quote-author">— Juliana Morales &amp; Diego Rodríguez</p>
+      <div class="quote-stars" aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" fill="#AED6F1"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" fill="#5DADE2"/></svg>
+        <svg width="12" height="12" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" fill="#AED6F1"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ WAVE ══ -->
+  <div class="wave-sep" aria-hidden="true">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,30 C360,0 1080,60 1440,30 L1440,0 L0,0 Z" fill="#EBF5FB"/></svg>
+  </div>
+
+  <!-- ══ REVELACIÓN DE SEXO ══ -->
+  <section id="revelacion" class="section section-blue" aria-label="Revelación">
+    <div class="section-header">
+      <p class="s-pre reveal">¿Niño o Niña?</p>
+      <h2 class="s-title reveal reveal-d1">¡Es un Niño!</h2>
+      <div class="blue-bar reveal reveal-d2"></div>
+    </div>
+    <div class="reveal-card reveal reveal-d3">
+      <div class="reveal-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="64" height="64" fill="none"><circle cx="12" cy="8" r="5" fill="rgba(255,255,255,0.3)" stroke="white" stroke-width="1.5"/><path d="M5 20c0-3.31 3.13-6 7-6s7 2.69 7 6" stroke="white" stroke-width="1.5" stroke-linecap="round"/><circle cx="17" cy="4" r="2.5" fill="rgba(255,255,255,0.5)"/><line x1="17" y1="6.5" x2="17" y2="10" stroke="white" stroke-width="1.5"/><line x1="15" y1="8" x2="19" y2="8" stroke="white" stroke-width="1.5"/></svg>
+      </div>
+      <p class="reveal-text">Aunque ya lo sabemos… <strong>¡Es un NIÑO!</strong></p>
+      <p class="reveal-sub">Bienvenido al mundo, Mateo. Eres la alegría de nuestra familia.</p>
+      <div class="reveal-balloons" aria-hidden="true">
+        <span class="balloon balloon-1"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg></span>
+        <span class="balloon balloon-2"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg></span>
+        <span class="balloon balloon-3"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg></span>
+        <span class="balloon balloon-4"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+        <span class="balloon balloon-5"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ WAVE ══ -->
+  <div class="wave-sep wave-sep--from-blue" aria-hidden="true">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#FFFFFF"/></svg>
+  </div>
+
+  <!-- ══ FAMILIA (papás y padrinos) ══ -->
+  <section id="familia" class="section section-white" aria-label="Papás y padrinos">
+    <div class="section-header">
+      <p class="s-pre reveal">Con quienes compartimos esta alegría</p>
+      <h2 class="s-title reveal reveal-d1">Familia</h2>
+      <div class="blue-bar reveal reveal-d2"></div>
+    </div>
+    <div class="familia-grid">
+      <div class="familia-card reveal reveal-d1">
+        <div class="familia-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h4 class="familia-role">Papás</h4>
+        <div class="familia-sep"></div>
+        <p class="familia-names">Juliana Morales<br>&amp; Diego Rodríguez</p>
+      </div>
+      <div class="familia-card reveal reveal-d2">
+        <div class="familia-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h4 class="familia-role">Padrinos</h4>
+        <div class="familia-sep"></div>
+        <p class="familia-names">Ana Gómez<br>&amp; Luis Pérez</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ WAVE ══ -->
+  <div class="wave-sep" aria-hidden="true">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,30 C360,0 1080,60 1440,30 L1440,0 L0,0 Z" fill="#EBF5FB"/></svg>
+  </div>
+
+  <!-- ══ CUENTA REGRESIVA ══ -->
+  <section id="cuenta-regresiva" class="section section-pale" aria-label="Cuenta regresiva">
+    <div class="section-header">
+      <p class="s-pre reveal">Faltan</p>
+      <h2 class="s-title reveal reveal-d1">Domingo · 6 de Diciembre · 2026</h2>
+      <div class="blue-bar reveal reveal-d2"></div>
+    </div>
+    <div class="cr-circles reveal reveal-d3">
+      <div class="cr-item">
+        <div class="cr-circle"><span id="cr-days">00</span></div>
+        <span class="cr-label">DÍAS</span>
+      </div>
+      <div class="cr-item">
+        <div class="cr-circle"><span id="cr-hours">00</span></div>
+        <span class="cr-label">HORAS</span>
+      </div>
+      <div class="cr-item">
+        <div class="cr-circle"><span id="cr-minutes">00</span></div>
+        <span class="cr-label">MINS</span>
+      </div>
+      <div class="cr-item">
+        <div class="cr-circle"><span id="cr-seconds">00</span></div>
+        <span class="cr-label">SECS</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ WAVE ══ -->
+  <div class="wave-sep wave-sep--down" aria-hidden="true">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#FFFFFF"/></svg>
+  </div>
+
+  <!-- ══ GALERÍA ══ -->
+  <section id="galeria" class="section section-white" aria-label="Galería de fotos">
+    <div class="section-header">
+      <p class="s-pre reveal">Momentos especiales</p>
+      <h2 class="s-title reveal reveal-d1">Galería</h2>
+      <div class="blue-bar reveal reveal-d2"></div>
+    </div>
+
+    <div class="gallery-grid" role="list">
+      <div class="gallery-item reveal reveal-d1" role="listitem">
+        <img src="img/fotos/img (1).png" alt="Mateo Rodríguez" loading="lazy" decoding="async" />
+        <div class="gallery-overlay" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="8" stroke="white" stroke-width="2"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="white" stroke-width="2" stroke-linecap="round"/><line x1="11" y1="8" x2="11" y2="14" stroke="white" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="11" x2="14" y2="11" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+      <div class="gallery-item reveal reveal-d2" role="listitem">
+        <img src="img/fotos/img (2).png" alt="Mateo Rodríguez" loading="lazy" decoding="async" />
+        <div class="gallery-overlay" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="8" stroke="white" stroke-width="2"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="white" stroke-width="2" stroke-linecap="round"/><line x1="11" y1="8" x2="11" y2="14" stroke="white" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="11" x2="14" y2="11" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+      <div class="gallery-item reveal reveal-d3" role="listitem">
+        <img src="img/fotos/img (3).png" alt="Mateo Rodríguez" loading="lazy" decoding="async" />
+        <div class="gallery-overlay" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="8" stroke="white" stroke-width="2"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="white" stroke-width="2" stroke-linecap="round"/><line x1="11" y1="8" x2="11" y2="14" stroke="white" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="11" x2="14" y2="11" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+      <div class="gallery-item reveal reveal-d4" role="listitem">
+        <img src="img/fotos/img (4).png" alt="Mateo Rodríguez" loading="lazy" decoding="async" />
+        <div class="gallery-overlay" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="8" stroke="white" stroke-width="2"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="white" stroke-width="2" stroke-linecap="round"/><line x1="11" y1="8" x2="11" y2="14" stroke="white" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="11" x2="14" y2="11" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ QR FOTOS ══ -->
+  <section id="fotos-qr" class="section section-pale" aria-label="Compartir fotos">
+    <div class="section-header">
+      <p class="s-pre reveal">El mejor recuerdo lo tienes tú</p>
+      <h2 class="s-title reveal reveal-d1">Comparte tus Fotos</h2>
+      <div class="blue-bar reveal reveal-d2"></div>
+    </div>
+    <div class="qr-block reveal reveal-d3">
+      <div class="qr-frame">
+        <img src="img/fotos/QR Fotos.png" alt="QR para subir fotos" class="qr-img" loading="lazy" decoding="async" />
+      </div>
+      <p class="qr-text">Escanea el código QR y sube tus fotos favoritas del bautizo de Mateo. ¡Armemos juntos el álbum de este día tan especial!</p>
+    </div>
+  </section>
+
+  <!-- ══ WAVE ══ -->
+  <div class="wave-sep" aria-hidden="true">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,30 C360,0 1080,60 1440,30 L1440,0 L0,0 Z" fill="#FFFFFF"/></svg>
+  </div>
+
+  <!-- ══ ITINERARIO ══ -->
+  <section id="itinerario" class="section section-white" aria-label="Itinerario del evento">
+    <div class="section-header">
+      <p class="s-pre reveal">El programa del día</p>
+      <h2 class="s-title reveal reveal-d1">Itinerario</h2>
+      <div class="blue-bar reveal reveal-d2"></div>
+    </div>
+    <div class="timeline">
+      <div class="tl-item reveal reveal-d1">
+        <div class="tl-time">11:00 AM</div>
+        <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+        <div class="tl-content">
+          <h4>Ceremonia de Bautismo</h4>
+          <p>Salón de Eventos Milán · Bogotá, Colombia</p>
+        </div>
+      </div>
+      <div class="tl-item reveal reveal-d2">
+        <div class="tl-time">12:30 PM</div>
+        <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+        <div class="tl-content">
+          <h4>Sesión de Fotos</h4>
+          <p>Momento especial para inmortalizar el día</p>
+        </div>
+      </div>
+      <div class="tl-item reveal reveal-d3">
+        <div class="tl-time">1:00 PM</div>
+        <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+        <div class="tl-content">
+          <h4>Recepción y Almuerzo</h4>
+          <p>Salón Privado Los Girasoles · Cra. 9 #12-45</p>
+        </div>
+      </div>
+      <div class="tl-item reveal reveal-d4">
+        <div class="tl-time">3:00 PM</div>
+        <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+        <div class="tl-content">
+          <h4>Compartir en Familia</h4>
+          <p>Celebración y momentos únicos juntos</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ WAVE ══ -->
+  <div class="wave-sep" aria-hidden="true">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,30 C360,0 1080,60 1440,30 L1440,0 L0,0 Z" fill="#EBF5FB"/></svg>
+  </div>
+
+  <!-- ══ OBSEQUIOS ══ -->
+  <section id="obsequios" class="section section-pale" aria-label="Lista de deseos">
+    <div class="section-header">
+      <p class="s-pre reveal">Con amor</p>
+      <h2 class="s-title reveal reveal-d1">Lista de Deseos</h2>
+      <div class="blue-bar reveal reveal-d2"></div>
+    </div>
+    <div class="gift-card reveal reveal-d3">
+      <div class="gift-icons" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#5DADE2" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#5DADE2" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#5DADE2" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+      </div>
+      <h3 class="gift-title">Tu amor es el mejor regalo</h3>
+      <p class="gift-text">Si deseás obsequiarle algo a Mateo, una lista de deseos será muy apreciada. Los artículos para bebé que más necesitamos son ropa talla 0–3M, pañales y artículos de cuidado.</p>
+    </div>
+  </section>
+
+  <!-- ══ MAPA ══ -->
+  <section id="mapa" class="section section-white" aria-label="Lugar del evento">
+    <div class="section-header">
+      <p class="s-pre reveal">¿Cómo llegar?</p>
+      <h2 class="s-title reveal reveal-d1">Lugar</h2>
+      <div class="blue-bar reveal reveal-d2"></div>
+    </div>
+    <div class="details-cards reveal reveal-d3">
+      <div class="detail-card">
+        <div class="detail-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <p class="detail-label">Ceremonia</p>
+        <div class="detail-sep"></div>
+        <p class="detail-time">11:00 AM</p>
+        <p class="detail-venue">Salón de Eventos Milán</p>
+        <p class="detail-address">Calle 7 #5-23, Bogotá</p>
+        <a href="https://share.google/Hwx3yN2UhIyH1Enzh" target="_blank" rel="noopener noreferrer" class="btn-pill">Ver en Maps</a>
+      </div>
+      <div class="detail-card">
+        <div class="detail-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <p class="detail-label">Recepción</p>
+        <div class="detail-sep"></div>
+        <p class="detail-time">1:00 PM</p>
+        <p class="detail-venue">Salón de Eventos Milán</p>
+        <p class="detail-address">Bogotá, Colombia</p>
+        <a href="https://share.google/Hwx3yN2UhIyH1Enzh" target="_blank" rel="noopener noreferrer" class="btn-pill">Ver en Maps</a>
+      </div>
+    </div>
+    <div class="map-embed reveal reveal-d4">
+      <iframe
+        src="https://www.google.com/maps?q=2.481158,-76.5693802&hl=es&z=18&output=embed"
+        width="100%" height="300" style="border:0;"
+        allowfullscreen="" loading="lazy"
+        title="Salón de Eventos Milán - Bogotá">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- ══ WAVE ══ -->
+  <div class="wave-sep" aria-hidden="true">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,30 C360,0 1080,60 1440,30 L1440,0 L0,0 Z" fill="#EBF5FB"/></svg>
+  </div>
+
+  <!-- ══ RSVP ══ -->
+  <section id="rsvp" class="section section-pale" aria-label="Confirmación">
+    <div class="section-header">
+      <p class="s-pre reveal">¿Nos acompañas?</p>
+      <h2 class="s-title reveal reveal-d1">Confirmar Asistencia</h2>
+      <div class="blue-bar reveal reveal-d2"></div>
+    </div>
+    <p class="confirm-text reveal reveal-d3">Por favor confirma tu asistencia antes del <strong>22 de Noviembre de 2026</strong></p>
+    <div class="reveal reveal-d4" style="text-align:center">
+      <a
+  href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Bautizo%20Mateo%20Rodr%C3%ADguez&dates=20260718T110000%2F20260718T150000&details=Bautizo%20de%20Mateo%20Rodr%C3%ADguez&location=Sal%C3%B3n%20de%20Eventos%20Mil%C3%A1n%2C%20Bogot%C3%A1"
+  target="_blank" rel="noopener noreferrer"
+  class="btn-calendar" aria-label="Agregar al calendario"
+><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Agregar al calendario</a>
+      <button class="btn-share" id="btn-share" aria-label="Compartir invitación"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Compartir invitación</button>
+      <a
+        href="https://wa.me/573128622945?text=Hola!%20Confirmo%20mi%20asistencia%20al%20bautizo%20de%20Mateo%20Rodr%C3%ADguez%20el%20s%C3%A1bado%2018%20de%20Julio%20de%202026"
+        target="_blank" rel="noopener noreferrer"
+        class="btn btn-blue"
+        aria-label="Confirmar por WhatsApp"
+      >
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Confirmar por WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <div class="footer-cloud" aria-hidden="true">
+      <svg viewBox="0 0 200 60" fill="none"><ellipse cx="100" cy="45" rx="90" ry="22" fill="#EBF5FB"/><ellipse cx="60" cy="35" rx="40" ry="20" fill="#EBF5FB"/><ellipse cx="140" cy="30" rx="44" ry="18" fill="#EBF5FB"/></svg>
+    </div>
+    <div class="footer-stars" aria-hidden="true">
+      <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" fill="#AED6F1"/></svg>
+      <svg width="10" height="10" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" fill="#5DADE2"/></svg>
+      <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" fill="#AED6F1"/></svg>
+    </div>
+    <p class="footer-name" data-b="name">Mateo Rodríguez</p>
+    <p class="footer-date">18 · Julio · 2026</p>
+    <p class="footer-tagline">Un nuevo ángel llega a nuestras vidas</p>
+  </footer>
+
+  <div class="footer-credit">
+    <p>© 2026 · Desarrollado por <span>Juan Camilo Zarta Campo</span> &nbsp;|&nbsp; <span>GOLDEN PANDA</span></p>
+  </div>
+
+  <!-- ══ PLANES ══ -->
+  <section id="planes" class="section section-white" aria-label="Planes Golden Panda">
+    <div class="section-header">
+      <p class="s-pre reveal">Crea tu invitación de bautizo</p>
+      <h2 class="s-title reveal reveal-d1">Nuestros Planes</h2>
+      <div class="blue-bar reveal reveal-d2"></div>
+    </div>
+
+    <div class="planes-grid">
+
+      <!-- Básico -->
+      <div class="plan-card reveal reveal-d1">
+        <p class="plan-label">Básico</p>
+        <div class="plan-price-block">
+          <span class="plan-amount">$129.000</span>
+          <span class="plan-cur">COP</span>
+        </div>
+        <div class="plan-rule"></div>
+        <ul class="plan-features">
+          <li>Portada con nombre y fecha</li>
+          <li>Mensaje de los papás</li>
+          <li>Galería de fotos</li>
+          <li>Programa del evento</li>
+          <li>Papás y padrinos</li>
+          <li>Confirmación por WhatsApp</li>
+          <li>Entrega en 1–2 días</li>
+        </ul>
+        <a href="https://api.whatsapp.com/send/?phone=573128622945&text=Hola!%20Me%20interesa%20el%20Plan%20B%C3%A1sico%20(%24129.000%20COP)%20para%20una%20invitaci%C3%B3n%20de%20bautizo.%20%C2%BFMe%20dan%20m%C3%A1s%20informaci%C3%B3n%3F" target="_blank" rel="noopener noreferrer" class="plan-cta">Consultar plan</a>
+      </div>
+
+      <!-- Clásico (featured) -->
+      <div class="plan-card plan-card--featured reveal reveal-d2">
+        <p class="plan-crown">✦ Más Popular ✦</p>
+        <p class="plan-label">Clásico</p>
+        <div class="plan-price-block">
+          <span class="plan-amount">$159.000</span>
+          <span class="plan-cur">COP</span>
+        </div>
+        <div class="plan-rule"></div>
+        <ul class="plan-features">
+          <li>Todo lo del plan Básico</li>
+          <li>Diseño personalizado</li>
+          <li>Música de fondo</li>
+          <li>QR fotos</li>
+          <li>Cuenta regresiva animada</li>
+          <li>Lista de deseos</li>
+          <li>Animaciones de burbujas</li>
+          <li>Entrega en 1–3 días</li>
+        </ul>
+        <a href="https://api.whatsapp.com/send/?phone=573128622945&text=Hola!%20Me%20interesa%20el%20Plan%20Cl%C3%A1sico%20(%24159.000%20COP)%20para%20una%20invitaci%C3%B3n%20de%20bautizo.%20%C2%BFMe%20dan%20m%C3%A1s%20informaci%C3%B3n%3F" target="_blank" rel="noopener noreferrer" class="plan-cta plan-cta--fill">Consultar plan</a>
+      </div>
+
+      <!-- Premium -->
+      <div class="plan-card reveal reveal-d3">
+        <p class="plan-label">Premium</p>
+        <div class="plan-price-block">
+          <span class="plan-amount">$209.000</span>
+          <span class="plan-cur">COP</span>
+        </div>
+        <div class="plan-rule"></div>
+        <ul class="plan-features">
+          <li>Todo lo del plan Clásico</li>
+          <li>Mapa del lugar</li>
+          <li>Dinámica de revelación</li>
+          <li>Arte digital para compartir</li>
+          <li>Soporte hasta el evento</li>
+          <li>Entrega en 2–4 días</li>
+        </ul>
+        <a href="https://api.whatsapp.com/send/?phone=573128622945&text=Hola!%20Me%20interesa%20el%20Plan%20Premium%20(%24209.000%20COP)%20para%20una%20invitaci%C3%B3n%20de%20bautizo.%20%C2%BFMe%20dan%20m%C3%A1s%20informaci%C3%B3n%3F" target="_blank" rel="noopener noreferrer" class="plan-cta">Consultar plan</a>
+      </div>
+
+    </div>
+
+    <div class="planes-contact reveal">
+      <p>¿Tienes dudas o quieres un presupuesto personalizado?</p>
+      <p>También creamos invitaciones digitales para <strong>bodas</strong>, <strong>XV años</strong> y todo tipo de eventos especiales.</p>
+      <a href="https://api.whatsapp.com/send/?phone=573128622945&text=Hola!%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20invitaciones%20digitales%20para%20bautizo." target="_blank" rel="noopener noreferrer" class="btn btn-blue">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Contactar para más información
+      </a>
+    </div>
+  </section>
+
+  <!-- ══ LIGHTBOX ══ -->
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Galería ampliada">
+    <button class="lb-btn" id="lb-close" aria-label="Cerrar">✕</button>
+    <button class="lb-btn" id="lb-prev" aria-label="Anterior">&#8249;</button>
+    <button class="lb-btn" id="lb-next" aria-label="Siguiente">&#8250;</button>
+    <img id="lb-img" src="" alt="Mateo Rodríguez" />
+  </div>
+
+  <!-- ══ MUSIC ══ -->
+  <div class="music-widget" aria-label="Música">
+    <audio id="bg-music" loop preload="auto">
+      <source src="audio/cancion.m4a" type="audio/mp4">
+    </audio>
+    <button class="music-btn" id="music-btn" aria-label="Reproducir música"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></button>
+  </div>
+
+  <!-- ══ WA FLOAT ══ -->
+  <a href="https://wa.me/573128622945" target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script src="js/main.js"></script>
+<script>
+(function(){
+  const btn = document.getElementById('btn-share');
+  if (!btn) return;
+  btn.addEventListener('click', async () => {
+    const data = { title: 'Bautizo · Mateo Rodríguez', text: 'El bautizo de Mateo Rodríguez es el 6 de diciembre de 2026. ¡Acompáñanos!', url: window.location.href };
+    if (navigator.share) {
+      try { await navigator.share(data); } catch(_) {}
+    } else {
+      await navigator.clipboard.writeText(window.location.href);
+      btn.textContent = '¡Link copiado!';
+      setTimeout(() => btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Compartir invitación', 2500);
+    }
+  });
+})();
+</script>
+</body>
+</html>
